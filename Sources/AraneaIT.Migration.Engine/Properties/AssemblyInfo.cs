@@ -6,13 +6,13 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("AraneaIT.Migration.Engine")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Core library to allow the easy migration and data conversion analysis")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AraneaIT.Migration.Engine")]
+[assembly: AssemblyCompany("Aranea IT Ltd")]
+[assembly: AssemblyProduct("Migration Toolkit by Aranea ITs")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyTrademark("Aranea IT")]
+[assembly: AssemblyCulture("en-GB")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 

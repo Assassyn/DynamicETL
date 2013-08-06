@@ -7,6 +7,7 @@ namespace AraneaIT.Migration.Engine.Actions
     using System.IO;
     using System.Linq;
     using System.Text;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// Allows to read CSV file
@@ -15,6 +16,8 @@ namespace AraneaIT.Migration.Engine.Actions
     [PartCreationPolicy(CreationPolicy.NonShared)]
     internal sealed class CSVReader : Reader
     {
+        private const string csvSplitRegex = "(?<=^|,)(\"(?:[^\"]|\"\")*\"|[^,]*)";
+
         private StreamReader file;
 
         /// <summary>
@@ -33,7 +36,17 @@ namespace AraneaIT.Migration.Engine.Actions
             if (!string.IsNullOrEmpty(line))
             {
                 this.PerformedReading = true;
-                
+                var items = Regex.Split(line, "([^,]*)|\"[^\"]\"");
+
+                foreach (var definition in this.EntityDefinition.PropertiesDefinition)
+                {
+                    var index = int.Parse(definition.SourceName);
+
+                    workingEntity.AddProperty(
+                        definition.Name,
+                        definition.Type,
+                        items[index].Trim());
+                }
             }
 
             return null;

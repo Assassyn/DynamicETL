@@ -16,8 +16,14 @@ namespace AraneaIT.Migration.Engine.Actions
     [PartCreationPolicy(CreationPolicy.NonShared)]
     internal sealed class CSVReader : Reader
     {
-        private const string csvSplitRegex = "(?<=^|,)(\"(?:[^\"]|\"\")*\"|[^,]*)";
+        /// <summary>
+        /// The CSV split regex
+        /// </summary>
+        private const string CsvSplitRegex = "(?<=^|,)(\"(?:[^\"]|\"\")*\"|[^,]*)";
 
+        /// <summary>
+        /// The file
+        /// </summary>
         private StreamReader file;
 
         /// <summary>
@@ -36,7 +42,7 @@ namespace AraneaIT.Migration.Engine.Actions
             if (!string.IsNullOrEmpty(line))
             {
                 this.PerformedReading = true;
-                var items = Regex.Split(line, "([^,]*)|\"[^\"]\"");
+                var items = Regex.Split(line, CSVReader.CsvSplitRegex);
 
                 foreach (var definition in this.EntityDefinition.PropertiesDefinition)
                 {
@@ -49,7 +55,7 @@ namespace AraneaIT.Migration.Engine.Actions
                 }
             }
 
-            return null;
+            return workingEntity;
 
             //var currentNode = iterator.Current;
             //this.Logger.Info("XmlReader: Started loading file");

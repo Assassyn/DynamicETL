@@ -12,7 +12,7 @@ namespace AraneaIT.Migration.Engine
     /// <summary>
     /// Extension which allows to get default value when attribute have not bee found
     /// </summary>
-    public static class XElementExtension
+    internal static class XElementExtension
     {
         /// <summary>
         /// Gets the value or default.

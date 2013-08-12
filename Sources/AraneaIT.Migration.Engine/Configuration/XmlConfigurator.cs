@@ -115,26 +115,6 @@ namespace AraneaIT.Migration.Engine.Configuration
             var contractName = node.Attribute(XName.Get("type")).Value.ToLower();
             var action = container.GetExportedValueOrDefault<TAction>(contractName);
 
-            //List<PropertyDescriptor> properties = new List<PropertyDescriptor>();
-
-            //var entityNode = node.Element(XName.Get("entity"));
-            //var entityType = entityNode.Attribute(XName.Get("type"));
-
-            //if (entityType != null)
-            //{
-            //    var ignoreSourceNameAttrubute = entityNode.Attribute("ignore-source-name");
-            //    var ignoreSourceName = false;
-
-            //    if (ignoreSourceNameAttrubute != null)
-            //    {
-            //        ignoreSourceName = ignoreSourceNameAttrubute.Value.ToBoolean();
-            //    }
-
-            //    properties.AddRange(AttributeEntityDefinitionFactory.CreateEntityDefinition(entityType.Value, ignoreSourceName));
-            //}
-
-            //properties.AddRange(XMLEntityDefinitionFactory.CreateEntityDefinition(entityNode));
-
             action.Configure(
                 this.GetConfigurationParameters(node),
                 node.GetEntityDefinition());
@@ -156,11 +136,11 @@ namespace AraneaIT.Migration.Engine.Configuration
 
             if (node.Element("conditions") != null)
             {
-                reader.SetReadConditions(node
+                reader.SetConditions(node
                     .Element("conditions")
                     .Elements("condition")
                     .Select(conditionNode =>
-                        new ReadCondition
+                        new Condition
                         {
                             SearchKey = conditionNode.GetAttributeValueOrDefault("key", string.Empty),
                             Comparer = conditionNode.GetAttributeValueOrDefault("comparer", string.Empty),

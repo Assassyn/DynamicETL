@@ -77,11 +77,21 @@ namespace AraneaIT.Migration.Engine.Actions
         {
         }
 
+
         /// <summary>
         /// Additional the configuration.
         /// </summary>
         /// <param name="parametersSet">The parameters set.</param>
         protected virtual void AdditionalConfiguration(IDictionary<string, string> parametersSet)
+        {
+        }
+
+        /// <summary>
+        /// Sets the conditions.
+        /// </summary>
+        /// <param name="readConditions">The read conditions.</param>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public void SetConditions(IEnumerable<Condition> readConditions)
         {
         }
     }

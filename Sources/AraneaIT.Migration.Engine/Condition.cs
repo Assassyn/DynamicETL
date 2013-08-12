@@ -10,12 +10,12 @@ namespace AraneaIT.Migration.Engine
     /// <summary>
     /// Allows to define the additional parameters for read process
     /// </summary>
-    public sealed class ReadCondition
+    public sealed class Condition
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReadCondition" /> class.
+        /// Initializes a new instance of the <see cref="Condition" /> class.
         /// </summary>
-        public ReadCondition()
+        public Condition()
         {
             this.AddQuotes = false;
             this.ValueFormat = "dd/mm/yyyy";

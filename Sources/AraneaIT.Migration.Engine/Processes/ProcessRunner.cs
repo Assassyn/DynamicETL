@@ -63,6 +63,11 @@ namespace AraneaIT.Migration.Engine.Proceses
 
             Task.WaitAll(allProcesses.Select(x => x.Value).ToArray());
 
+            if (this.ExeutingFinished != null)
+            {
+                this.ExeutingFinished(this, EventArgs.Empty);
+            }
+
             LogManager.GetCurrentClassLogger().Info("Finished processes scheduling");
         }
 

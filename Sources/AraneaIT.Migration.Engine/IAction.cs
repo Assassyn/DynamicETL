@@ -8,5 +8,7 @@ namespace AraneaIT.Migration.Engine
 	public interface IAction : IDisposable
 	{
 		void Configure(IDictionary<string, string> parametersSet, IEntityDefinition entityDefinition);
+
+        void SetConditions(IEnumerable<Condition> readConditions);
 	}
 }

@@ -32,7 +32,7 @@ namespace AraneaIT.Migration.Engine
         /// Sets the read conditions.
         /// </summary>
         /// <param name="readConditions">The enumerable.</param>
-        void SetReadConditions(IEnumerable<ReadCondition> readConditions);
+        //void SetReadConditions(IEnumerable<ReadCondition> readConditions);
 
         /// <summary>
         /// Adds the join.

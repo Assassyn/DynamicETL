@@ -34,7 +34,7 @@ namespace AraneaIT.Migration.Engine.Actions
         /// <value>
         /// The condition collection.
         /// </value>
-        protected IEnumerable<ReadCondition> Conditions { get; set; }
+        protected IEnumerable<Condition> Conditions { get; set; }
 
         /// <summary>
         /// Gets or sets the joins.
@@ -85,7 +85,7 @@ namespace AraneaIT.Migration.Engine.Actions
         /// Sets the read conditions.
         /// </summary>
         /// <param name="conditions">The conditions.</param>
-        public void SetReadConditions(IEnumerable<ReadCondition> conditions)
+        public void SetConditions(IEnumerable<Condition> conditions)
         {
             this.Conditions = conditions;
         }

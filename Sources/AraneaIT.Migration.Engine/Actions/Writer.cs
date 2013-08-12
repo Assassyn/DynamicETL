@@ -75,5 +75,13 @@ namespace AraneaIT.Migration.Engine.Actions
         protected virtual void Configure(IDictionary<string, string> parametersSet)
         {
         }
+
+        /// <summary>
+        /// Sets the conditions.
+        /// </summary>
+        /// <param name="readConditions">The read conditions.</param>
+        public void SetConditions(IEnumerable<Condition> readConditions)
+        {
+        }
     }
 }

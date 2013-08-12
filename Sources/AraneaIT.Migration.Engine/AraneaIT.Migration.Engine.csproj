@@ -68,6 +68,7 @@
     <Compile Include="Actions\Reader.cs" />
     <Compile Include="Configuration\Configurator.cs" />
     <Compile Include="AttributeEntityDefinitionFactory.cs" />
+    <Compile Include="Configuration\FluentConfiguration.cs" />
     <Compile Include="Configuration\XMLEntityDefinitionFactory.cs" />
     <Compile Include="ConversionHelper.cs" />
     <Compile Include="DefaultValueProvider.cs" />
@@ -83,7 +84,7 @@
     <Compile Include="Processes\DefaultProcess.cs" />
     <Compile Include="Processes\ProcessRunner.cs" />
     <Compile Include="PropertyAttribute.cs" />
-    <Compile Include="ReadCondition.cs" />
+    <Compile Include="Condition.cs" />
     <Compile Include="PropertyDescriptor.cs" />
     <Compile Include="Actions\XmlWriter.cs" />
     <Compile Include="IEntityDefinition.cs" />

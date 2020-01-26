@@ -11,34 +11,29 @@ module Engine =
     }
 
   type IExtract =
-    abstract Read: unit -> AsyncSeq<Entity>
+    abstract Read: unit -> Entity seq
 
   type ITransform = 
-    abstract Convert: Entity -> Async<Entity>
+    abstract Convert: Entity -> Entity
 
   type ILoad =
-    abstract Write: Entity -> Async<unit>
+    abstract Write: Entity -> unit
 
   type Transform(extractor: IExtract, transform: ITransform, loader: ILoad) = 
     member this.Execute () =
       extractor.Read()
-      |> AsyncSeq.mapAsync transform.Convert
-      |> AsyncSeq.iterAsync loader.Write
-      |> Async.RunSynchronously
+      |> Seq.map transform.Convert
+      |> Seq.iter loader.Write
 
 module Empty = 
   type Transform() = 
     interface Engine.ITransform with 
       member this.Convert(entity: Engine.Entity) =
-        async {
-          return entity
-        }
+        entity
   type Load() =
     interface Engine.ILoad with
       member this.Write(entity) =
-        async {
-          ()
-        }
+        ()
 
   let transform = new Transform()
   let load = new Load()

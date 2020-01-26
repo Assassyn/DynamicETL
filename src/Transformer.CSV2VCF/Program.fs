@@ -7,7 +7,7 @@ open Transformer.Plugin.Excel.Reader
 [<EntryPoint>]
 let main argv =
   let path = "C:\Users\szymo\OneDrive\contacts.csv"
-  let reader = ExcelReader(path, "contacts")
+  use reader = new CSVReader(path)
   let transform = Engine.Transform(reader, Empty.transform, Empty.load )
   transform.Execute()
   printfn "Hello World from F#!"

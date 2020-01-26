@@ -13,17 +13,21 @@ module Engine =
   type IExtract =
     abstract Read: unit -> Entity seq
 
+  type IAction =
+    abstract Execute: Entity -> Entity
+
   type ITransform = 
     abstract Convert: Entity -> Entity
 
   type ILoad =
     abstract Write: Entity -> unit
 
-  type Transform(extractor: IExtract, transform: ITransform, loader: ILoad) = 
+  type Transform(initialExtracxt: IExtract, actions: IAction seq) = 
     member this.Execute () =
-      extractor.Read()
-      |> Seq.map transform.Convert
-      |> Seq.iter loader.Write
+      let data = initialExtracxt.Read()
+      let executreAction (actions: IAction seq) (item: Entity) = actions |> Seq.fold (fun acc elem -> elem.Execute(acc)) item
+      data 
+      |> Seq.map (executreAction actions)
 
 module Empty = 
   type Transform() = 

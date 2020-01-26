@@ -22,7 +22,7 @@ namespace AraneaIT.Migration.Engine
         /// <summary>
         /// Perfoms for batch.
         /// </summary>
-        /// <param name="IEnumerable`1">The I enumerable`1.</param>
+        /// <param name="IEnumerable`1">The I enumerable`1.</param>10
         /// <returns>Batch of updated entities</returns>
         IEnumerable<Entity> PerfomForBatch(IEnumerable<Entity> entities);
     }

@@ -10,8 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Transformer.Actions.vCard\Transformer.Actions.vCard.fsproj" />
     <ProjectReference Include="..\Transformer.Engine\Transformer.Engine.fsproj" />
-    <ProjectReference Include="..\Transformer.Plugin.Excel\Transformer.Plugin.Excel.fsproj" />
+    <ProjectReference Include="..\Transformer.Plugin.Excel\Transformer.Actions.Excel.fsproj" />
   </ItemGroup>
 
 </Project>

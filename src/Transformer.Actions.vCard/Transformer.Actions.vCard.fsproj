@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="vCard.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EWSoftware.PDI.Data" Version="2020.1.18" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Transformer.Engine\Transformer.Engine.fsproj" />
+  </ItemGroup>
+
+</Project>

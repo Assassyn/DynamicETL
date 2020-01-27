@@ -16,28 +16,34 @@ module Engine =
   type IAction =
     abstract Execute: Entity -> Entity
 
-  type ITransform = 
-    abstract Convert: Entity -> Entity
-
-  type ILoad =
-    abstract Write: Entity -> unit
-
   type Transform(initialExtracxt: IExtract, actions: IAction seq) = 
     member this.Execute () =
       let data = initialExtracxt.Read()
-      let executreAction (actions: IAction seq) (item: Entity) = actions |> Seq.fold (fun acc elem -> elem.Execute(acc)) item
+      let executreAction (actions: IAction seq) (item: Entity) = actions |> Seq.fold (fun acc elem -> elem.Execute(acc)) item |> ignore
       data 
-      |> Seq.map (executreAction actions)
+      |> Seq.iter (executreAction actions)
+
+module Actions =
+  open Engine
+
+  type RenameAction(oldName: string, newName:string) =
+    interface IAction with
+      member this.Execute entity =
+        let renameProperty item =
+          let oldValue = item.properties.[oldName]
+          let properties = item.properties.Add(newName, oldValue)
+          {
+            order = item.order
+            properties = properties
+          }
+        match entity.properties.ContainsKey oldName with 
+        | true -> renameProperty entity
+        | _ -> entity
 
 module Empty = 
   type Transform() = 
-    interface Engine.ITransform with 
-      member this.Convert(entity: Engine.Entity) =
+    interface Engine.IAction with 
+      member this.Execute(entity: Engine.Entity) =
         entity
-  type Load() =
-    interface Engine.ILoad with
-      member this.Write(entity) =
-        ()
 
   let transform = new Transform()
-  let load = new Load()

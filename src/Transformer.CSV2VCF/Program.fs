@@ -12,13 +12,12 @@ let main argv =
   let path = "C:\Users\szymo\OneDrive\contacts - Copy.csv"
   
   use reader = new CSVReader(path)
-  let actions = seq {
-    yield (RenameAction("First Name","GivenName"):> Engine.IAction)
-    yield (RenameAction("Birthday","BirthDate"):> Engine.IAction)
-    yield (VCardWriter ("C:\\Users\\szymo\\OneDrive\\contacts.vcf"):> Engine.IAction)
-  }
-  let transform = Transform(reader, actions)
-  transform.Execute()
+
+  reader.read()
+  ||> rename "First Name" "GivenName"
+  ||> rename "Birthday" "BirthDate" 
+  ||> writeVCard "C:\\Users\\szymo\\OneDrive\\contacts.vcf"
+  |> Engine.execute
 
   printfn "ETL proces has finished."
   0 // return an integer exit code

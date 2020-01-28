@@ -28,24 +28,25 @@ module Reader =
         headers
         |> Array.mapi extractValue
         |> Map.ofArray
+        
+      //interface IExtract with
+      //  member this.Read() = 
+      member this.read() =
+        let mutable count = 0
+        let headers = getHeaders excelReader
+        seq {
+          while excelReader.Read() do 
+            let ordinal = excelReader.GetString(0)
+                      
+            let entity = {
+              order = count
+              properties = readRowWithHeaders headers excelReader
+            }
+            count <- count + 1
+            entity
+        }
 
       interface IDisposable with 
         member this.Dispose() = 
           fileStream.Dispose()
           excelReader.Dispose()
-
-      interface IExtract with
-        member this.Read() = 
-          let mutable count = 0
-          let headers = getHeaders excelReader
-          seq {
-            while excelReader.Read() do 
-              let ordinal = excelReader.GetString(0)
-              
-              let entity = {
-                order = count
-                properties = readRowWithHeaders headers excelReader
-              }
-              count <- count + 1
-              entity
-          }

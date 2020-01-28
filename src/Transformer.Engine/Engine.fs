@@ -27,23 +27,15 @@ module Actions =
   open Engine
 
   type RenameAction(oldName: string, newName:string) =
+    let renameProperty item =
+      let oldValue = item.properties.[oldName]
+      let properties = item.properties.Add(newName, oldValue)
+      {
+        order = item.order
+        properties = properties
+      }
     interface IAction with
       member this.Execute entity =
-        let renameProperty item =
-          let oldValue = item.properties.[oldName]
-          let properties = item.properties.Add(newName, oldValue)
-          {
-            order = item.order
-            properties = properties
-          }
         match entity.properties.ContainsKey oldName with 
         | true -> renameProperty entity
         | _ -> entity
-
-module Empty = 
-  type Transform() = 
-    interface Engine.IAction with 
-      member this.Execute(entity: Engine.Entity) =
-        entity
-
-  let transform = new Transform()

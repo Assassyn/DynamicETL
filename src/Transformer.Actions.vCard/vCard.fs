@@ -50,5 +50,28 @@ module Reader =
         setProperty "Telex" (fun value -> vcard.Telephones.Add(PhoneTypes.Text, value) |> ignore)
         setProperty "TTY/TDD Phone" (fun value -> vcard.Telephones.Add(PhoneTypes.TextPhone, value) |> ignore)
 
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.Addresses .Add(PhoneTypes.TextPhone, value) |> ignore)
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.Agents .Add(PhoneTypes.TextPhone, value) |> ignore)
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.Anniversary .Add(PhoneTypes.TextPhone, value) |> ignore)
+        setProperty "BirthDate" (fun value -> vcard.BirthDate.Value <- value)
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.Categories .Add(PhoneTypes.TextPhone, value) |> ignore)
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.Classification .Add(PhoneTypes.TextPhone, value) |> ignore)
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.ClientPidMaps .Add(PhoneTypes.TextPhone, value) |> ignore)
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.Gender |> ignore)
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.GeographicPosition .Add(PhoneTypes.TextPhone, value) |> ignore)
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.Group .Add(PhoneTypes.TextPhone, value) |> ignore)
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.Kind .Add(PhoneTypes.TextPhone, value) |> ignore)
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.Labels .Add(PhoneTypes.TextPhone, value) |> ignore)
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.LastRevision .Add(PhoneTypes.TextPhone, value) |> ignore)
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.Logo .Add(PhoneTypes.TextPhone, value) |> ignore)
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.Mailer .Add(PhoneTypes.TextPhone, value) |> ignore)
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.Members .Add(PhoneTypes.TextPhone, value) |> ignore)
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.Nickname .Add(PhoneTypes.TextPhone, value) |> ignore)
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.Notes .Add(PhoneTypes.TextPhone, value) |> ignore)
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.Organization .Add(PhoneTypes.TextPhone, value) |> ignore)
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.Photo .Add(PhoneTypes.TextPhone, value) |> ignore)
+        //setProperty "TTY/TDD Phone" (fun value -> vcard.Related .Add(PhoneTypes.TextPhone, value) |> ignore)
+        //setProperty "Url" (fun value -> vcard.Url .Add(PhoneTypes.TextPhone, value) |> ignore)
+
         createVCardFile vcard
         entity

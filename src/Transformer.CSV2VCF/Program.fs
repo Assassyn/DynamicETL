@@ -3,17 +3,14 @@
 open System
 open Transformer
 open Transformer.Engine
-open Transformer.Plugin.Excel.Reader
 open Transformer.Actions
 open Transformer.Actions.vCard.Reader
 
 [<EntryPoint>]
 let main argv =
-  let path = "C:\Users\szymo\OneDrive\contacts - Copy.csv"
+  let path = "C:\Users\szymo\OneDrive\contacts.csv"
   
-  use reader = new CSVReader(path)
-
-  reader.read()
+  (CSV.read path)
   ||> rename "First Name" "GivenName"
   ||> rename "Birthday" "BirthDate" 
   ||> writeVCard "C:\\Users\\szymo\\OneDrive\\contacts.vcf"

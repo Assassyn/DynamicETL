@@ -4,15 +4,9 @@ open System
 open System.IO
 open System.Text
 open ExcelDataReader
-open FSharp.Control
 open Transformer.Engine
 
 module Reader =
-    type CSVReader(path: string) =
-      let fileStream = File.Open(path, FileMode.Open) 
-      let excelReader = 
-        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance)
-        ExcelReaderFactory.CreateCsvReader(fileStream)
       let getHeaders (reader: IExcelDataReader) =
         reader.Read() |> ignore
         let headers = 
@@ -24,20 +18,18 @@ module Reader =
       let readRowWithHeaders headers (reader: IExcelDataReader) =
         let extractValue index header = 
           (header, reader.GetString(index))
-          
         headers
         |> Array.mapi extractValue
         |> Map.ofArray
-        
-      //interface IExtract with
-      //  member this.Read() = 
-      member this.read() =
+      let read path =
         let mutable count = 0
+        use fileStream = File.Open(path, FileMode.Open) 
+        use excelReader = 
+          Encoding.RegisterProvider(CodePagesEncodingProvider.Instance)
+          ExcelReaderFactory.CreateCsvReader(fileStream)
         let headers = getHeaders excelReader
         seq {
           while excelReader.Read() do 
-            let ordinal = excelReader.GetString(0)
-                      
             let entity = {
               order = count
               properties = readRowWithHeaders headers excelReader
@@ -45,8 +37,3 @@ module Reader =
             count <- count + 1
             entity
         }
-
-      interface IDisposable with 
-        member this.Dispose() = 
-          fileStream.Dispose()
-          excelReader.Dispose()
